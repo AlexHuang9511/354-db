@@ -12,5 +12,7 @@ with conn:
     for t in tables:
         cur.execute("DROP TABLE %s" % t)
 
+    print("Database emptied")
+
 if conn:
     conn.close()
