@@ -11,8 +11,8 @@ Populate tables with sample tuples
 tuple_queries = (
     """
     INSERT INTO Item VALUES
-    (0, 'Book', 1, '2024-03-10', 25),
-    (1, 'Book', 1, '2024-02-15', 25),
+    (0, 'Book', 1, '2024-03-10', 20),
+    (1, 'Book', 1, '2024-02-15', 20),
     (2, 'Book', 1, '2024-01-20', 30),
     (3, 'Book', 1, '2024-03-05', 20),
     (4, 'Book', 1, '2024-01-30', 20),
@@ -25,15 +25,15 @@ tuple_queries = (
     (10, 'Magazine', 1, '2024-03-01', 25.50),
     (11, 'Magazine', 1, '2024-02-15', 22.75),
     (12, 'Magazine', 1, '2024-03-10', 28.00),
-    (13, 'Magazine', 1, '2024-02-20', 24.30),
+    (13, 'Magazine', 1, '2024-02-20', 28.00),
     (14, 'Magazine', 1, '2024-03-05', 27.60),
     (15, 'Magazine', 1, '2024-02-25', 21.85),
     (16, 'Magazine', 1, '2024-03-12', 29.40),
     (17, 'Magazine', 1, '2024-02-18', 23.25),
-    (18, 'Magazine', 1, '2024-03-08', 26.70),
+    (18, 'Magazine', 1, '2024-03-08', 20.95),
     (19, 'Magazine', 1, '2024-01-22', 20.95),
 
-    (20, 'Journal', 1, '2024-03-01', 24.50),
+    (20, 'Journal', 1, '2024-03-01', 26.70),
     (21, 'Journal', 1, '2024-02-15', 21.75),
     (22, 'Journal', 1, '2024-03-10', 29.00),
     (23, 'Journal', 1, '2024-02-20', 25.30),
@@ -50,7 +50,7 @@ tuple_queries = (
     (33, 'CD', 1, '2024-02-20', 25.30),
     (34, 'CD', 1, '2024-03-05', 27.60),
     (35, 'CD', 1, '2024-02-25', 22.85),
-    (36, 'CD', 1, '2024-03-12', 28.40),
+    (36, 'CD', 1, '2024-03-12', 23.25),
     (37, 'CD', 1, '2024-02-18', 23.25),
     (38, 'CD', 1, '2024-03-08', 26.70),
     (39, 'CD', 1, '2024-01-22', 20.95),
@@ -69,8 +69,8 @@ tuple_queries = (
 
     """
     INSERT INTO Book VALUES
-    (0, 'George Orwell', 'Secker & Warburg', '1949-06-08', 328, '978-0451524935'),
-    (1, 'J.K. Rowling', 'Bloomsbury', '1997-06-26', 223, '978-0747532699'),
+    (0, 'Gabriel García Márquez', 'Editorial Sudamericana', '1967-05-30', 417, '978-0060883287'),
+    (1, 'Leo Tolstoy', 'The Russian Messenger', '1869-01-01', 1225, '978-1420953297'),
     (2, 'J.R.R. Tolkien', 'Allen & Unwin', '1954-07-29', 423, '978-0618640157'),
     (3, 'Harper Lee', 'J.B. Lippincott & Co.', '1960-07-11', 281, '978-0061120084'),
     (4, 'F. Scott Fitzgerald', 'Charles Scribner’s Sons', '1925-04-10', 180, '978-0743273565'),
@@ -86,18 +86,18 @@ tuple_queries = (
     (10, 'National Geographic', '2024-03-01', 98, '0027-9358'),
     (11, 'TIME', '2024-02-15', 76, '0040-781X'),
     (12, 'Scientific American', '2024-03-10', 88, '0036-8733'),
-    (13, 'Forbes', '2024-02-20', 100, '0015-6914'),
+    (13, 'Scientific American', '2024-03-10', 88, '0036-8733'),
     (14, 'The New Yorker', '2024-03-05', 120, '0028-792X'),
     (15, 'Wired', '2024-02-25', 110, '1059-1028'),
     (16, 'Popular Science', '2024-03-12', 90, '0161-7370'),
     (17, 'Smithsonian', '2024-02-18', 85, '0037-7333'),
-    (18, 'Harvard Business Review', '2024-03-08', 95, '0017-8012'),
+    (18, 'Nature', '2024-01-22', 150, '0028-0836'),
     (19, 'Nature', '2024-01-22', 150, '0028-0836');
     """,
 
     """
     INSERT INTO Journal VALUES
-    (20, 'John Doe', 'Springer', '2024-03-01', 25, '10.1000/j.journal1'),
+    (20, 'Laura Martinez', 'SAGE Publications', '2024-03-08', 31, '10.1000/j.journal9'),
     (21, 'Jane Smith', 'Elsevier', '2024-02-15', 30, '10.1000/j.journal2'),
     (22, 'Alice Johnson', 'Wiley', '2024-03-10', 28, '10.1000/j.journal3'),
     (23, 'Robert Brown', 'Nature Publishing Group', '2024-02-20', 32, '10.1000/j.journal4'),
@@ -117,7 +117,7 @@ tuple_queries = (
     (33, 'Queen', 'EMI', '1975-11-21', 40),
     (34, 'Nirvana', 'DGC Records', '1991-09-24', 49),
     (35, 'Adele', 'Columbia Records', '2011-11-18', 45),
-    (36, 'Taylor Swift', 'Republic Records', '2022-10-21', 61),
+    (36, 'Eminem', 'Aftermath Entertainment', '2000-05-23', 50),
     (37, 'Eminem', 'Aftermath Entertainment', '2000-05-23', 50),
     (38, 'Daft Punk', 'Virgin Records', '2013-05-17', 74),
     (39, 'The Weeknd', 'XO Records', '2020-03-20', 56);
