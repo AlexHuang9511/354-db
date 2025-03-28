@@ -8,14 +8,14 @@ conn.execute("PRAGMA foreign_keys = ON;")
 Populate tables with sample tuples
 """
 
-setup_queries = (
+tuple_queries = (
     """"""
 )
 
 with conn:
     cur = conn.cursor()
 
-    for q in setup_queries:
+    for q in tuple_queries:
         cur.execute(q)
 
     print("Tuples added to database")
