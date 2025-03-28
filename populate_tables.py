@@ -79,6 +79,20 @@ tuple_queries = (
     (7, 'Mark Twain', 'American Publishing Company', '1885-02-18', 366, '978-0486280615'),
     (8, 'Mary Shelley', 'Lackington, Hughes, Harding, Mavor & Jones', '1818-01-01', 280, '978-0486282114'),
     (9, 'Jane Austen', 'T. Egerton', '1813-01-28', 279, '978-1503290563');
+    """,
+
+    """
+    INSERT INTO Magazine VALUES
+    (10, 'National Geographic', '2024-03-01', 98, '0027-9358'),
+    (11, 'TIME', '2024-02-15', 76, '0040-781X'),
+    (12, 'Scientific American', '2024-03-10', 88, '0036-8733'),
+    (13, 'Forbes', '2024-02-20', 100, '0015-6914'),
+    (14, 'The New Yorker', '2024-03-05', 120, '0028-792X'),
+    (15, 'Wired', '2024-02-25', 110, '1059-1028'),
+    (16, 'Popular Science', '2024-03-12', 90, '0161-7370'),
+    (17, 'Smithsonian', '2024-02-18', 85, '0037-7333'),
+    (18, 'Harvard Business Review', '2024-03-08', 95, '0017-8012'),
+    (19, 'Nature', '2024-01-22', 150, '0028-0836');
     """
 )
 
