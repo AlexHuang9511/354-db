@@ -19,7 +19,8 @@ setup_queries = (
     fine REAL,
     PRIMARY KEY (itemID),
     CHECK (type IN ('Book', 'Magazine', 'Journal', 'CD', 'Record')),
-    CHECK (available IN (True, False)));
+    CHECK (available IN (True, False)),
+    CHECK (fine >= 0));
     """,
 
     """
@@ -30,7 +31,8 @@ setup_queries = (
     releaseDate TEXT,
     pages INTEGER,
     ISBN TEXT,
-    FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE);
+    FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE
+    CHECK (pages > 0));
     """,
 
     """
@@ -40,7 +42,8 @@ setup_queries = (
     releaseDate TEXT,
     pages INTEGER,
     ISSN TEXT,
-    FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE);
+    FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE
+    CHECK (pages > 0));
     """,
 
     """
@@ -51,7 +54,8 @@ setup_queries = (
     releaseDate TEXT,
     pages INTEGER,
     doi TEXT,
-    FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE);
+    FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE,
+    CHECK (pages > 0));
     """,
 
     """
@@ -61,7 +65,8 @@ setup_queries = (
     publisher TEXT,
     releaseDate TEXT,
     time INTEGER,
-    FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE);
+    FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE
+    CHECK (time > 0));
     """,
 
     """
@@ -71,7 +76,8 @@ setup_queries = (
     publisher TEXT,
     releaseDate TEXT,
     time INTEGER,
-    FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE);
+    FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE
+    CHECK (time > 0));
     """,
 
     """
@@ -95,7 +101,8 @@ setup_queries = (
     FOREIGN KEY (borrowerID) REFERENCES Borrower(borrowerID) ON DELETE CASCADE,
     FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE,
     PRIMARY KEY (borrowerID, itemID, borrowDate),
-    CHECK (dueDate >= borrowDate));
+    CHECK (dueDate >= borrowDate)
+    CHECK (returnDate >= borrowDate));
     """,
 
     """
