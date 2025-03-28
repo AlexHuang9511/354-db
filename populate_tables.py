@@ -93,6 +93,34 @@ tuple_queries = (
     (17, 'Smithsonian', '2024-02-18', 85, '0037-7333'),
     (18, 'Harvard Business Review', '2024-03-08', 95, '0017-8012'),
     (19, 'Nature', '2024-01-22', 150, '0028-0836');
+    """,
+
+    """
+    INSERT INTO Journal VALUES
+    (20, 'John Doe', 'Springer', '2024-03-01', 25, '10.1000/j.journal1'),
+    (21, 'Jane Smith', 'Elsevier', '2024-02-15', 30, '10.1000/j.journal2'),
+    (22, 'Alice Johnson', 'Wiley', '2024-03-10', 28, '10.1000/j.journal3'),
+    (23, 'Robert Brown', 'Nature Publishing Group', '2024-02-20', 32, '10.1000/j.journal4'),
+    (24, 'Emily White', 'Oxford University Press', '2024-03-05', 27, '10.1000/j.journal5'),
+    (25, 'David Miller', 'Cambridge University Press', '2024-02-25', 35, '10.1000/j.journal6'),
+    (26, 'Sarah Wilson', 'IEEE', '2024-03-12', 22, '10.1000/j.journal7'),
+    (27, 'Michael Clark', 'ACM', '2024-02-18', 29, '10.1000/j.journal8'),
+    (28, 'Laura Martinez', 'SAGE Publications', '2024-03-08', 31, '10.1000/j.journal9'),
+    (29, 'Daniel Lewis', 'Taylor & Francis', '2024-01-22', 26, '10.1000/j.journal10');
+    """,
+
+    """
+    INSERT INTO CD VALUES
+    (30, 'The Beatles', 'Apple Records', '1969-09-26', 47),
+    (31, 'Pink Floyd', 'Harvest Records', '1973-03-01', 43),
+    (32, 'Michael Jackson', 'Epic Records', '1982-11-30', 42),
+    (33, 'Queen', 'EMI', '1975-11-21', 40),
+    (34, 'Nirvana', 'DGC Records', '1991-09-24', 49),
+    (35, 'Adele', 'Columbia Records', '2011-11-18', 45),
+    (36, 'Taylor Swift', 'Republic Records', '2022-10-21', 61),
+    (37, 'Eminem', 'Aftermath Entertainment', '2000-05-23', 50),
+    (38, 'Daft Punk', 'Virgin Records', '2013-05-17', 74),
+    (39, 'The Weeknd', 'XO Records', '2020-03-20', 56);
     """
 )
 
