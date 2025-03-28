@@ -65,9 +65,21 @@ tuple_queries = (
     (47, 'Record', 1, '2024-02-18', 23.25),
     (48, 'Record', 1, '2024-03-08', 26.70),
     (49, 'Record', 1, '2024-01-22', 20.95);
+    """,
+
     """
-    ,
-    """"""
+    INSERT INTO Book VALUES
+    (0, 'George Orwell', 'Secker & Warburg', '1949-06-08', 328, '978-0451524935'),
+    (1, 'J.K. Rowling', 'Bloomsbury', '1997-06-26', 223, '978-0747532699'),
+    (2, 'J.R.R. Tolkien', 'Allen & Unwin', '1954-07-29', 423, '978-0618640157'),
+    (3, 'Harper Lee', 'J.B. Lippincott & Co.', '1960-07-11', 281, '978-0061120084'),
+    (4, 'F. Scott Fitzgerald', 'Charles Scribner’s Sons', '1925-04-10', 180, '978-0743273565'),
+    (5, 'Leo Tolstoy', 'The Russian Messenger', '1869-01-01', 1225, '978-1420953297'),
+    (6, 'Gabriel García Márquez', 'Editorial Sudamericana', '1967-05-30', 417, '978-0060883287'),
+    (7, 'Mark Twain', 'American Publishing Company', '1885-02-18', 366, '978-0486280615'),
+    (8, 'Mary Shelley', 'Lackington, Hughes, Harding, Mavor & Jones', '1818-01-01', 280, '978-0486282114'),
+    (9, 'Jane Austen', 'T. Egerton', '1813-01-28', 279, '978-1503290563');
+    """
 )
 
 with conn:
