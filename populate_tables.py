@@ -121,6 +121,20 @@ tuple_queries = (
     (37, 'Eminem', 'Aftermath Entertainment', '2000-05-23', 50),
     (38, 'Daft Punk', 'Virgin Records', '2013-05-17', 74),
     (39, 'The Weeknd', 'XO Records', '2020-03-20', 56);
+    """,
+
+    """
+    INSERT INTO Record VALUES
+    (40, 'The Rolling Stones', 'Decca Records', '1972-05-12', 46),
+    (41, 'The Beatles', 'Parlophone', '1967-05-26', 40),
+    (42, 'Fleetwood Mac', 'Warner Bros.', '1977-02-04', 45),
+    (43, 'David Bowie', 'RCA Records', '1972-06-16', 39),
+    (44, 'Led Zeppelin', 'Atlantic Records', '1971-11-08', 42),
+    (45, 'Bob Dylan', 'Columbia Records', '1965-03-22', 50),
+    (46, 'Elvis Presley', 'RCA Victor', '1956-03-23', 29),
+    (47, 'Prince', 'Paisley Park Records', '1984-06-25', 44),
+    (48, 'The Doors', 'Elektra Records', '1967-01-04', 43),
+    (49, 'U2', 'Island Records', '1987-03-09', 51);
     """
 )
 
