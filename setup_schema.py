@@ -31,7 +31,7 @@ setup_queries = (
     releaseDate TEXT,
     pages INTEGER,
     ISBN TEXT,
-    FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE
+    FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE,
     CHECK (pages > 0));
     """,
 
@@ -42,7 +42,7 @@ setup_queries = (
     releaseDate TEXT,
     pages INTEGER,
     ISSN TEXT,
-    FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE
+    FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE,
     CHECK (pages > 0));
     """,
 
@@ -65,7 +65,7 @@ setup_queries = (
     publisher TEXT,
     releaseDate TEXT,
     time INTEGER,
-    FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE
+    FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE,
     CHECK (time > 0));
     """,
 
@@ -76,7 +76,7 @@ setup_queries = (
     publisher TEXT,
     releaseDate TEXT,
     time INTEGER,
-    FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE
+    FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE,
     CHECK (time > 0));
     """,
 
@@ -101,7 +101,7 @@ setup_queries = (
     FOREIGN KEY (borrowerID) REFERENCES Borrower(borrowerID) ON DELETE CASCADE,
     FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE,
     PRIMARY KEY (borrowerID, itemID, borrowDate),
-    CHECK (dueDate >= borrowDate)
+    CHECK (dueDate >= borrowDate),
     CHECK (returnDate >= borrowDate));
     """,
 
@@ -121,7 +121,8 @@ setup_queries = (
     name TEXT,
     email TEXT,
     phone INTEGER,
-    PRIMARY KEY (attendeeID));""",
+    PRIMARY KEY (attendeeID));
+    """,
 
     """
     CREATE TABLE Attends(
@@ -130,7 +131,8 @@ setup_queries = (
     phone INTEGER,
     FOREIGN KEY (attendeeID) REFERENCES Attendee(attendeeID) ON DELETE CASCADE,
     FOREIGN KEY (eventID) REFERENCES Event(eventID) ON DELETE CASCADE,
-    PRIMARY KEY (attendeeID));""",
+    PRIMARY KEY (attendeeID));
+    """,
 
     """
     CREATE TABLE Personnel(
@@ -139,7 +141,8 @@ setup_queries = (
     email TEXT,
     phone INTEGER,
     position TEXT,
-    PRIMARY KEY (PID));""",
+    PRIMARY KEY (PID));
+    """,
 )
 
 with conn:
