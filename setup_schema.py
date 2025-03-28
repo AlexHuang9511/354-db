@@ -17,7 +17,9 @@ setup_queries = (
     available INTEGER,
     arrivalDate TEXT,
     fine REAL,
-    PRIMARY KEY (itemID));
+    PRIMARY KEY (itemID),
+    CHECK (type IN ('Book', 'Magazine', 'Journal', 'CD', 'Record')),
+    CHECK (available IN (True, False)));
     """,
 
     """
@@ -79,7 +81,8 @@ setup_queries = (
     email TEXT,
     phone INTEGER,
     balanceOwed REAL,
-    PRIMARY KEY (borrowerID));
+    PRIMARY KEY (borrowerID),
+    CHECK (balanceOwed >= 0));
     """,
 
     """
@@ -91,7 +94,8 @@ setup_queries = (
     dueDate TEXT,
     FOREIGN KEY (borrowerID) REFERENCES Borrower(borrowerID) ON DELETE CASCADE,
     FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE,
-    PRIMARY KEY (borrowerID, itemID, borrowDate));
+    PRIMARY KEY (borrowerID, itemID, borrowDate),
+    CHECK (dueDate >= borrowDate));
     """,
 
     """
