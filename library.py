@@ -1,9 +1,69 @@
 import sqlite3
+conn = sqlite3.connect('library.db')
+conn.execute("PRAGMA foreign_keys = ON;")
+cur = conn.cursor()
 
 
 def findItem():
+    def findBook():
+        print("find book")
+        while not doneSearch:
+            print("What would you like to search by?")
+            print("1 - Author")
+            print("2 - Publisher")
+            print("3 - ISBN")
+            print("0 - Go Back")
+            search = int((input("Enter a number: ")))
+
+            if search == 0:
+                return
+            elif search == 1:
+                author = input("Enter name of author: ")
+
+                query = """
+                SELECT * FROM Item JOIN Book ON Item.itemID = Book.itemID
+                WHERE Item.type = 'Book' AND Item.available = 1
+                AND Book.author = ?;
+                """
+
+                cur.execute(query, author)
+
+            elif search == 2:
+                publisher = input("Enter name of publisher: ")
+            elif search == 3:
+                isbn = input("Enter name of ISBN: ")
+
+    shoudClose = False
+
+    while not shoudClose:
+        print("What type of item would you like to search for?")
+        print("1 - Book")
+        print("2 - Magazine")
+        print("3 - Journal")
+        print("4 - CD")
+        print("5 - Record")
+        print("0 - Go Back")
+        type = int(input("Enter a number: "))
+
+        if type == 0:
+            shoudClose = True
+
+        doneSearch = False
+
+        if type == 1:
+            findBook()
+        elif type == 2:
+            print("find Magazine")
+        elif type == 3:
+            print("find Journal")
+        elif type == 4:
+            print("find CD")
+        elif type == 5:
+            print("find Record")
 
 
+"""
+:TODO
 def borrowItem():
 
 
@@ -23,6 +83,7 @@ def volunteer():
 
 
 def findLibrarian():
+"""
 
 
 def library():
@@ -46,6 +107,7 @@ def library():
 
         if choice == 0:
             shouldExit = True
+            conn.close()
         elif choice == 1:
             findItem()
         elif choice == 2:
