@@ -14,6 +14,7 @@ setup_queries = (
     CREATE TABLE Item(
     itemID INTEGER,
     type TEXT,
+    title TEXT,
     available INTEGER,
     arrivalDate TEXT,
     fine REAL,

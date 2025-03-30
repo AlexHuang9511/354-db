@@ -18,15 +18,21 @@ def findItem():
             if search == 0:
                 return
             elif search == 1:
-                author = input("Enter name of author: ")
+                author = str(input("Enter name of author: "))
+                print("author: ", author)
 
                 query = """
-                SELECT * FROM Item JOIN Book ON Item.itemID = Book.itemID
-                WHERE Item.type = 'Book' AND Item.available = 1
-                AND Book.author = ?;
+                SELECT i.title, b.author, b.publisher, b.ISBN, b.pages
+                FROM Item i JOIN Book b ON i.itemID = b.itemID
+                WHERE i.type = 'Book' AND i.available = 1
+                AND b.author = ?;
                 """
 
-                cur.execute(query, author)
+                cur.execute(query, (author,))
+                rows = cur.fetchall()
+
+                for row in rows:
+                    print(row)
 
             elif search == 2:
                 publisher = input("Enter name of publisher: ")
