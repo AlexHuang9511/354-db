@@ -11,8 +11,8 @@ Populate tables with sample tuples
 tuple_queries = (
     """
     INSERT INTO Item VALUES
-    (0, 'Book', '1984', 1, '2024-03-10', 20),
-    (1, 'Book', "Harry Potter and the Philosopher's Stone", 1, '2024-02-15', 20),
+    (0, 'Book', 'One Hundred Years of Solitude', 1, '2024-03-10', 20),
+    (1, 'Book', 'War and Peace', 1, '2024-02-15', 20),
     (2, 'Book', 'The Lord of the Rings', 1, '2024-01-20', 30),
     (3, 'Book', 'To Kill a Mockingbird', 1, '2024-03-05', 20),
     (4, 'Book', 'The Great Gatsby', 1, '2024-01-30', 20),
@@ -33,7 +33,7 @@ tuple_queries = (
     (18, 'Magazine', 'Nature - January 2024', 1, '2024-03-08', 20.95),
     (19, 'Magazine', 'Nature - January 2024', 1, '2024-01-22', 20.95),
 
-    (20, 'Journal', 'Advanced Research in AI - March 2024', 1, '2024-03-01', 26.70),
+    (20, 'Journal', 'Social Sciences Review - March 2024', 1, '2024-03-01', 26.70),
     (21, 'Journal', 'Medical Innovations - February 2024', 1, '2024-02-15', 21.75),
     (22, 'Journal', 'Quantum Computing Review - March 2024', 1, '2024-03-10', 29.00),
     (23, 'Journal', 'Environmental Studies - February 2024', 1, '2024-02-20', 25.30),
