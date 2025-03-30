@@ -1,4 +1,5 @@
 import sqlite3
+import datetime
 conn = sqlite3.connect('library.db')
 conn.execute("PRAGMA foreign_keys = ON;")
 cur = conn.cursor()
@@ -374,30 +375,45 @@ def findItem():
         print("4 - CD")
         print("5 - Record")
         print("0 - Go Back")
-        type = int(input("Enter a number: "))
+        type = input("Enter a number: ")
 
-        if type == 0:
+        if type == '0':
             return
 
-        if type == 1:
+        if type == '1':
             findBook()
-        elif type == 2:
+        elif type == '2':
             findMegazine()
-        elif type == 3:
+        elif type == '3':
             findJournal()
-        elif type == 4:
+        elif type == '4':
             findCD()
-        elif type == 5:
+        elif type == '5':
             findRecord()
         else:
             continue
 
 
+def borrowItem():
+    borrowerID = input("Enter your ID: ")
+    itemID = input("Enter the itemID of the item you want to borrow: ")
+
+    date = datetime.date().strftime("%y-%m-%d")
+
+    # :TODO
+    dueDate = date
+
+    query = """
+        INSERT INTO Borrows VALUES
+        (?, ?, ?, NULL, ?)
+        """
+
+    cur.execute(query, (borrowerID, itemID, date, dueDate,))
+    return
+
+
 """
 :TODO
-def borrowItem():
-
-
 def returnItem():
 
 
