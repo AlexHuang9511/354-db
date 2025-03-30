@@ -1,5 +1,5 @@
 import sqlite3
-import datetime
+from datetime import datetime, timedelta
 conn = sqlite3.connect('library.db')
 conn.execute("PRAGMA foreign_keys = ON;")
 cur = conn.cursor()
@@ -398,10 +398,11 @@ def borrowItem():
     borrowerID = input("Enter your ID: ")
     itemID = input("Enter the itemID of the item you want to borrow: ")
 
-    date = datetime.date().strftime("%y-%m-%d")
+    date = datetime.today()
+    dueDate = date + timedelta(days=30)
 
-    # :TODO
-    dueDate = date
+    date = date.strftime("%y-%m-%d")
+    dueDate = dueDate.strftime("%y-%m-%d")
 
     query = """
         INSERT INTO Borrows VALUES
@@ -409,6 +410,14 @@ def borrowItem():
         """
 
     cur.execute(query, (borrowerID, itemID, date, dueDate,))
+
+    query = """
+        UPDATE Item
+        SET available=0
+        WHERE Item.itemID = ?
+    """
+
+    cur.execute(query, (itemID,))
     return
 
 
