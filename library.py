@@ -10,31 +10,31 @@ def findItem():
     # option:(type, search attribute, search query)
     options = {'1': ("Book", ("Title", "Author", "Publisher", "ISBN"),
                      """
-                  SELECT i.title, b.author, b.publisher, b.ISBN, b.pages
+                  SELECT i.itemID, i.title, b.author, b.publisher, b.ISBN, b.pages
                   FROM Item i JOIN Book b ON i.itemID = b.itemID
                   WHERE i.type = 'Book' AND i.available = 1
                   AND """),
                '2': ("Magazine", ("Title", "Publisher", "ISSN"),
                      """
-                  SELECT i.title, m.publisher, m.ISSN, m.pages
+                  SELECT i.itemID, i.title, m.publisher, m.ISSN, m.pages
                   FROM Item i JOIN Magazine m ON i.itemID = m.itemID
                   WHERE i.type = 'Magazine' AND i.available = 1
                   AND """),
                '3': ("Journal", ("Title", "Author", "Publisher", "DOI"),
                      """
-                  SELECT i.title, j.author, j.publisher, j.doi, j.pages
+                  SELECT i.itemID, i.title, j.author, j.publisher, j.doi, j.pages
                   FROM Item i JOIN Journal j ON i.itemID = j.itemID
                   WHERE i.type = 'Journal' AND i.available = 1
                   AND """),
                '4': ("CD", ("Title", "Author", "Publisher"),
                      """
-                  SELECT i.title, c.author, c.publisher, c.time
+                  SELECT i.itemID, i.title, c.author, c.publisher, c.time
                   FROM Item i JOIN CD c ON i.itemID = c.itemID
                   WHERE i.type = 'CD' AND i.available = 1
                   AND """),
                '5': ("Record", ("Title", "Author", "Publisher"),
                      """
-                  SELECT i.title, r.author, r.publisher, r.time
+                  SELECT i.itemID, i.title, r.author, r.publisher, r.time
                   FROM Item i JOIN Record r ON i.itemID = r.itemID
                   WHERE i.type = 'Record' AND i.available = 1
                   AND """)}
