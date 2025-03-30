@@ -135,6 +135,20 @@ tuple_queries = (
     (47, 'Prince', 'Paisley Park Records', '1984-06-25', 44),
     (48, 'The Doors', 'Elektra Records', '1967-01-04', 43),
     (49, 'U2', 'Island Records', '1987-03-09', 51);
+    """,
+
+    """
+    INSERT INTO Borrower VALUES
+    (0, 'Alice Johnson', 'alice.johnson@gmail.com', 1234567890, 0),
+    (1, 'Bob Smith', 'bob.smith@gmail.com', 2345678901, 0),
+    (2, 'Charlie Davis', 'charlie.davis@gmail.com', 3456789012, 0),
+    (3, 'David White', 'david.white@gmail.com', 4567890123, 0),
+    (4, 'Emma Brown', 'emma.brown@gmail.com', 5678901234, 0),
+    (5, 'Frank Miller', 'frank.miller@gmail.com', 6789012345, 0),
+    (6, 'Grace Wilson', 'grace.wilson@gmail.com', 7890123456, 0),
+    (7, 'Henry Adams', 'henry.adams@gmail.com', 8901234567, 0),
+    (8, 'Isabella Martinez', 'isabella.martinez@gmail.com', 9012345678, 0),
+    (9, 'Jack Taylor', 'jack.taylor@gmail.com', 9123456789, 0);
     """
 )
 
