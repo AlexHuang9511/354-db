@@ -106,6 +106,8 @@ def borrowItem():
     """
 
     cur.execute(query, (itemID,))
+
+    conn.commit()
     return
 
 
