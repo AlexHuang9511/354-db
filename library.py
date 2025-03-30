@@ -95,7 +95,7 @@ def borrowItem():
     # put item into Borrows
     query = """
         INSERT INTO Borrows VALUES
-        (?, ?, ?, NULL, ?)
+        (?, ?, ?, NULL, ?);
     """
 
     cur.execute(query, (borrowerID, itemID, date, dueDate,))
@@ -104,7 +104,7 @@ def borrowItem():
     query = """
         UPDATE Item
         SET available=0
-        WHERE Item.itemID = ?
+        WHERE Item.itemID = ?;
     """
 
     cur.execute(query, (itemID,))
@@ -123,7 +123,7 @@ def returnItem():
     query = """
         UPDATE Item
         SET available = 1
-        WHERE Item.itemID = ?
+        WHERE Item.itemID = ?;
     """
 
     cur.execute(query, (itemID,))
@@ -133,7 +133,7 @@ def returnItem():
     query = """
         DELETE FROM Borrows
         WHERE Borrows.itemID = ? AND Borrows.borrowerID = ?
-        AND Borrows.returnDate IS NULL
+        AND Borrows.returnDate IS NULL;
     """
 
     cur.execute(query, (itemID, borrowerID))
@@ -167,7 +167,7 @@ def registerEvent():
 
     query = """
         INSERT INTO Attends VALUES
-        (?, ?)
+        (?, ?);
     """
     cur.execute(query, (attendeeID, eventID))
     conn.commit()
@@ -175,7 +175,6 @@ def registerEvent():
     return
 
 
-"""
 def volunteer():
     # needs:
     # PID - same as donate
@@ -184,8 +183,28 @@ def volunteer():
     # phone
     # position = volunteer
     # insert into personnel
+    print("To register as a volunteer, please enter the following infomation:")
+    name = input("1/3 - Name: ")
+    email = input("2/3 - Email: ")
+    phone = int(input("3/3 - Phone Number: "))
+    position = "Volunteer"
 
-"""
+    query = """
+        SELECT MAX(PID)
+        FROM Personnel;
+    """
+    cur.execute(query)
+    maxID = cur.fetchone()
+    pid = int(maxID)
+
+    query = """
+        INSERT INTO Personnel VALUE
+        (?, ?, ?, ?, ?);
+    """
+    cur.execute(query, (pid, name, email, phone, position))
+    conn.commit()
+
+    return
 
 
 def findLibrarian():
@@ -195,7 +214,7 @@ def findLibrarian():
     query = """
         SELECT name, email
         FROM Personnel
-        WHERE position = 'Librarian'
+        WHERE position = 'Librarian';
     """
     cur.execute(query)
     rows = cur.fetchall()
