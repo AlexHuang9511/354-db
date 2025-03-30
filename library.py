@@ -1,9 +1,71 @@
 import sqlite3
 import datetime
+
 conn = sqlite3.connect('library.db')
 conn.execute("PRAGMA foreign_keys = ON;")
 cur = conn.cursor()
 
+def newFindItem():
+    #option:(type, search attribute, search query)
+    options = {'1':("Book", ("Title", "Author", "Publisher", "ISBN"),
+                  """
+                  SELECT i.title, b.author, b.publisher, b.ISBN, b.pages
+                  FROM Item i JOIN Book b ON i.itemID = b.itemID
+                  WHERE i.type = 'Book' AND i.available = 1
+                  AND """),
+               '2':("Magazine", ("Title", "Publisher", "ISSN"),
+                  """
+                  SELECT i.title, m.publisher, m.ISSN, m.pages
+                  FROM Item i JOIN Magazine m ON i.itemID = m.itemID
+                  WHERE i.type = 'Magazine' AND i.available = 1
+                  AND """),
+               '3':("Journal", ("Title", "Author", "Publisher", "DOI"),
+                  """
+                  SELECT i.title, j.author, j.publisher, j.doi, j.pages
+                  FROM Item i JOIN Journal j ON i.itemID = j.itemID
+                  WHERE i.type = 'Journal' AND i.available = 1
+                  AND """),
+               '4':("CD", ("Title", "Author", "Publisher"),
+                  """
+                  SELECT i.title, c.author, c.publisher, c.time
+                  FROM Item i JOIN CD c ON i.itemID = c.itemID
+                  WHERE i.type = 'CD' AND i.available = 1
+                  AND """),
+               '5':("Record", ("Title", "Author", "Publisher"),
+                  """
+                  SELECT i.title, r.author, r.publisher, r.time
+                  FROM Item i JOIN Record r ON i.itemID = r.itemID
+                  WHERE i.type = 'Record' AND i.available = 1
+                  AND """)}
+
+    print("you are in new func")
+
+    while True:
+        print("What type of item would you like to search for?")
+        for o in options:
+            print(o, "-", options[o][0])
+        print("0 - Go back")
+
+        type = input("Enter a number: ")
+
+        if type == '0':
+            return
+
+        if type in options:
+            search = None
+            while search != 0:
+                print("What would you like to search by?")
+                for i in range(1, len(options[type][1]) + 1):
+                    print(i, "-", options[type][1][i-1])
+                print("0 - Go back")
+
+                try:
+                    search = int(input("Enter a number: "))
+                except:
+                    continue
+
+                if 1 <= search <= len(options[type][1]):
+                    print("Enter " + options[type][1][search-1].lower() + ":")
 
 def findBook():
     while True:
@@ -86,7 +148,7 @@ def findBook():
             continue
 
 
-def findMegazine():
+def findMagazine():
     while True:
         print("What would you like to search by?")
         print("1 - Title")
@@ -383,7 +445,7 @@ def findItem():
         if type == '1':
             findBook()
         elif type == '2':
-            findMegazine()
+            findMagazine()
         elif type == '3':
             findJournal()
         elif type == '4':
@@ -478,4 +540,5 @@ def library():
 
 
 if __name__ == "__main__":
+    newFindItem()
     library()

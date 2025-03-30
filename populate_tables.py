@@ -1,6 +1,6 @@
 import sqlite3
-conn = sqlite3.connect('library.db')
 
+conn = sqlite3.connect('library.db')
 conn.execute("PRAGMA foreign_keys = ON;")
 
 """
@@ -205,6 +205,20 @@ tuple_queries = (
     (8, 104),
     (9, 109),
     (9, 103);
+    """,
+
+    """
+    INSERT INTO Personnel VALUES
+    (19822, 'Oliver Scott', 'oliver.scott@gmail.com', 1234567890, 'Librarian'),
+    (22033, 'Sophia Lee', 'sophia.lee@gmail.com', 2345678901, 'Archivist'),
+    (28548, 'Liam Walker', 'liam.walker@gmail.com', 3456789012, 'Library Assistant'),
+    (13562, 'Mia Robinson', 'mia.robinson@gmail.com', 4567890123, 'Reference Librarian'),
+    (10739, 'Ethan Harris', 'ethan.harris@gmail.com', 5678901234, 'Librarian'),
+    (27227, 'Emma Thompson', 'emma.thompson@gmail.com', 6789123456, 'Cataloger'),
+    (39715, 'James Anderson', 'james.anderson@gmail.com', 7890234567, 'Volunteer'),
+    (40290, 'Isabella Wright', 'isabella.wright@gmail.com', 8901234567, 'Volunteer'),
+    (25222, 'Lucas Adams', 'lucas.adams@gmail.com', 9012345678, 'Digital Resources Librarian'),
+    (24843, 'William Johnson', 'william.johnson@gmail.com', 9123345679, 'Library Director');
     """
 )
 
