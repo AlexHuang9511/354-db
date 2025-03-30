@@ -248,11 +248,11 @@ def volunteer():
         FROM Personnel;
     """
     cur.execute(query)
-    maxID = cur.fetchone()
+    maxID = cur.fetchone()[0]
     pid = int(maxID) + 1
 
     query = """
-        INSERT INTO Personnel VALUE
+        INSERT INTO Personnel VALUES
         (?, ?, ?, ?, ?);
     """
     cur.execute(query, (pid, name, email, phone, position))
@@ -314,7 +314,6 @@ def library():
         else:
             continue
 
-        print(choice)
     conn.close()
     return 0
 
