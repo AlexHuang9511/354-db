@@ -92,13 +92,15 @@ def borrowItem():
     date = date.strftime("%y-%m-%d")
     dueDate = dueDate.strftime("%y-%m-%d")
 
+    # put item into Borrows
     query = """
         INSERT INTO Borrows VALUES
         (?, ?, ?, NULL, ?)
-        """
+    """
 
     cur.execute(query, (borrowerID, itemID, date, dueDate,))
 
+    # make item unavailable
     query = """
         UPDATE Item
         SET available=0
@@ -110,10 +112,34 @@ def borrowItem():
     conn.commit()
     return
 
+
+def returnItem():
+    borrowerID = input("Enter your ID: ")
+    itemID = input("Enter the itemID of the item you want to return: ")
+
+    # make item available
+    query = """
+        UPDATE Item
+        SET available = 1
+        WHERE Item.itemID = ?
+    """
+
+    cur.execute(query, (itemID,))
+
+    # remove from Borrows only if the returnDate is NULL
+    # returnDate = NULL -> not overdue
+    query = """
+        DELETE FROM Borrows
+        WHERE Borrows.itemID = ? AND Borrows.borrowerID = ?
+        AND Borrows.returnDate IS NULL
+    """
+
+    cur.execute(query, (itemID, borrowerID))
+    return
+
+
 """
 :TODO
-def returnItem():
-
 
 def donateItem():
 
