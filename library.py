@@ -147,53 +147,55 @@ def donateItem():
     # title - input
     # avail = 1
     # arrivalDate = today
-    # fine = 20
+    # default fine = 20
     # item specific fields
 
-    # option:(type, input attribute, insert query)
-    options = {'1': ("Book", ("Title", "Author", "Publisher", "ISBN"),
-                     """
-                  SELECT i.itemID, i.title, b.author, b.publisher, b.ISBN, b.pages
-                  FROM Item i JOIN Book b ON i.itemID = b.itemID
-                  WHERE i.type = 'Book' AND i.available = 1
-                  AND """),
-               '2': ("Magazine", ("Title", "Publisher", "ISSN"),
-                     """
-                  SELECT i.itemID, i.title, m.publisher, m.ISSN, m.pages
-                  FROM Item i JOIN Magazine m ON i.itemID = m.itemID
-                  WHERE i.type = 'Magazine' AND i.available = 1
-                  AND """),
-               '3': ("Journal", ("Title", "Author", "Publisher", "DOI"),
-                     """
-                  SELECT i.itemID, i.title, j.author, j.publisher, j.doi, j.pages
-                  FROM Item i JOIN Journal j ON i.itemID = j.itemID
-                  WHERE i.type = 'Journal' AND i.available = 1
-                  AND """),
-               '4': ("CD", ("Title", "Author", "Publisher"),
-                     """
-                  SELECT i.itemID, i.title, c.author, c.publisher, c.time
-                  FROM Item i JOIN CD c ON i.itemID = c.itemID
-                  WHERE i.type = 'CD' AND i.available = 1
-                  AND """),
-               '5': ("Record", ("Title", "Author", "Publisher"),
-                     """
-                  SELECT i.itemID, i.title, r.author, r.publisher, r.time
-                  FROM Item i JOIN Record r ON i.itemID = r.itemID
-                  WHERE i.type = 'Record' AND i.available = 1
-                  AND """)}
-
-    type = input("What type of item are you donating: ")
-    title = input("What is the title of the item you are donating: ")
-    date = datetime.today()
-    fine = 20
+    # options:(type, attributes)
+    options = {'1': ("Book", ("author", "publisher", "release date (yyyy-mm-dd)", "pages", "ISBN")),
+               '2': ("Magazine", ("publisher", "release date (yyyy-mm-dd)", "pages", "ISSN")),
+               '3': ("Journal", ("author", "publisher", "release date (yyyy-mm-dd)", "pages", "DOI")),
+               '4': ("CD", ("author", "publisher", "release date (yyyy-mm-dd)", "time")),
+               '5': ("Record", ("author", "publisher", "release date (yyyy-mm-dd)", "time"))}
 
     query = """
         SELECT MAX(itemID) FROM Item;
     """
     cur.execute(query)
-    maxID = cur.fetchone()
+    maxID = cur.fetchone()[0]
     itemID = int(maxID) + 1
 
+    type = ''
+    while type not in options:
+        print("What type of item are you donating?")
+        for o in options:
+            print(o, "-", options[o][0])
+        print("0 - Go back")
+
+        type = input("Enter a number: ")
+
+        if type == '0':
+            return
+
+    title = input("Enter %s title: " %options[type][0])
+    date = datetime.today().strftime("%y-%m-%d")
+    fine = 20
+
+    query = "INSERT INTO Item VALUES (?, ?, ?, 1, ?, ?)"
+
+    cur.execute(query, (itemID, options[type][0], title, date, fine))
+
+    query = f"INSERT INTO {options[type][0]} VALUES ({itemID}"
+
+    for attr in options[type][1]:
+        query += ", " + "'" + input(f"Enter {options[type][0]} {attr}: ") + "'"
+
+    query += ");"
+
+    print(query)
+
+    cur.execute(query)
+
+    conn.commit()
     return
 
 
