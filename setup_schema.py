@@ -32,6 +32,7 @@ setup_queries = (
     releaseDate TEXT,
     pages INTEGER,
     ISBN TEXT,
+    PRIMARY KEY (itemID),
     FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE,
     CHECK (pages > 0));
     """,
@@ -43,6 +44,7 @@ setup_queries = (
     releaseDate TEXT,
     pages INTEGER,
     ISSN TEXT,
+    PRIMARY KEY (itemID),
     FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE,
     CHECK (pages > 0));
     """,
@@ -55,6 +57,7 @@ setup_queries = (
     releaseDate TEXT,
     pages INTEGER,
     doi TEXT,
+    PRIMARY KEY (itemID),
     FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE,
     CHECK (pages > 0));
     """,
@@ -66,6 +69,7 @@ setup_queries = (
     publisher TEXT,
     releaseDate TEXT,
     time INTEGER,
+    PRIMARY KEY (itemID),
     FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE,
     CHECK (time > 0));
     """,
@@ -77,6 +81,7 @@ setup_queries = (
     publisher TEXT,
     releaseDate TEXT,
     time INTEGER,
+    PRIMARY KEY (itemID),
     FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE,
     CHECK (time > 0));
     """,
@@ -99,9 +104,9 @@ setup_queries = (
     borrowDate TEXT,
     returnDate TEXT,
     dueDate TEXT,
+    PRIMARY KEY (borrowerID, itemID, borrowDate),
     FOREIGN KEY (borrowerID) REFERENCES Borrower(borrowerID) ON DELETE CASCADE,
     FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE,
-    PRIMARY KEY (borrowerID, itemID, borrowDate),
     CHECK (dueDate >= borrowDate),
     CHECK (returnDate >= borrowDate));
     """,
@@ -129,10 +134,9 @@ setup_queries = (
     CREATE TABLE Attends(
     attendeeID INTEGER,
     eventID INTEGER,
-    phone INTEGER,
+    PRIMARY KEY (attendeeID, eventID),
     FOREIGN KEY (attendeeID) REFERENCES Attendee(attendeeID) ON DELETE CASCADE,
-    FOREIGN KEY (eventID) REFERENCES Event(eventID) ON DELETE CASCADE,
-    PRIMARY KEY (attendeeID));
+    FOREIGN KEY (eventID) REFERENCES Event(eventID) ON DELETE CASCADE);
     """,
 
     """

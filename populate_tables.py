@@ -163,6 +163,48 @@ tuple_queries = (
     (7, 7, '2025-03-22', NULL, '2025-04-22'),
     (8, 22, '2025-03-25', NULL, '2025-04-25'),
     (9, 9, '2025-03-28', NULL, '2025-04-28');
+    """,
+
+    """
+    INSERT INTO Event VALUES
+    (100, 'Tech Conference 2025', '2025-05-10', 'Developers, Entrepreneurs', 'A302'),
+    (101, 'AI Symposium', '2025-06-15', 'Researchers, Students', 'B320'),
+    (102, 'Music Fest', '2025-07-20', 'Music Lovers, Artists', 'A203'),
+    (103, 'Science Fair', '2025-08-05', 'Students, Scientists', 'C414'),
+    (104, 'Business Summit', '2025-09-12', 'Executives, Entrepreneurs', 'A311'),
+    (105, 'Art Exhibition', '2025-10-18', 'Artists, Collectors', 'A315'),
+    (106, 'Sports Meetup', '2025-11-25', 'Athletes, Coaches', 'C337'),
+    (107, 'Book Fair', '2025-12-02', 'Readers, Writers', 'B399'),
+    (108, 'Film Festival', '2026-01-14', 'Filmmakers, Critics', 'B399'),
+    (109, 'Health & Wellness Expo', '2026-02-22', 'Doctors, Fitness Enthusiasts', 'A302');
+    """,
+
+    """
+    INSERT INTO Attendee VALUES
+    (0, 'Oliver Scott', 'oliver.scott@gmail.com', 1234567890),
+    (1, 'Sophia Lee', 'sophia.lee@gmail.com', 2345678901),
+    (2, 'Liam Walker', 'liam.walker@gmail.com', 3456789012),
+    (3, 'Mia Robinson', 'mia.robinson@gmail.com', 4567890123),
+    (4, 'Ethan Harris', 'ethan.harris@gmail.com', 5678901234),
+    (5, 'Ava Gonzalez', 'ava.gonzalez@gmail.com', 6789012345),
+    (6, 'Mason Carter', 'mason.carter@gmail.com', 7890123456),
+    (7, 'Isabella Wright', 'isabella.wright@gmail.com', 8901234567),
+    (8, 'Lucas Adams', 'lucas.adams@gmail.com', 9012345678),
+    (9, 'Charlotte Mitchell', 'charlotte.mitchell@gmail.com', 9123456789);
+    """,
+
+    """
+    INSERT INTO Attends VALUES
+    (0, 100),
+    (0, 105),
+    (1, 100),
+    (7, 100),
+    (2, 108),
+    (0, 108),
+    (3, 108),
+    (8, 104),
+    (9, 109),
+    (9, 103);
     """
 )
 
