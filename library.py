@@ -195,7 +195,7 @@ def volunteer():
     """
     cur.execute(query)
     maxID = cur.fetchone()
-    pid = int(maxID)
+    pid = int(maxID) + 1
 
     query = """
         INSERT INTO Personnel VALUE
