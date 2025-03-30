@@ -141,12 +141,64 @@ def returnItem():
     return
 
 
+def donateItem():
+    # itemID - get largest, existing itemID and add 1
+    # type - input
+    # title - input
+    # avail = 1
+    # arrivalDate = today
+    # fine = 20
+    # item specific fields
+
+    # option:(type, input attribute, insert query)
+    options = {'1': ("Book", ("Title", "Author", "Publisher", "ISBN"),
+                     """
+                  SELECT i.itemID, i.title, b.author, b.publisher, b.ISBN, b.pages
+                  FROM Item i JOIN Book b ON i.itemID = b.itemID
+                  WHERE i.type = 'Book' AND i.available = 1
+                  AND """),
+               '2': ("Magazine", ("Title", "Publisher", "ISSN"),
+                     """
+                  SELECT i.itemID, i.title, m.publisher, m.ISSN, m.pages
+                  FROM Item i JOIN Magazine m ON i.itemID = m.itemID
+                  WHERE i.type = 'Magazine' AND i.available = 1
+                  AND """),
+               '3': ("Journal", ("Title", "Author", "Publisher", "DOI"),
+                     """
+                  SELECT i.itemID, i.title, j.author, j.publisher, j.doi, j.pages
+                  FROM Item i JOIN Journal j ON i.itemID = j.itemID
+                  WHERE i.type = 'Journal' AND i.available = 1
+                  AND """),
+               '4': ("CD", ("Title", "Author", "Publisher"),
+                     """
+                  SELECT i.itemID, i.title, c.author, c.publisher, c.time
+                  FROM Item i JOIN CD c ON i.itemID = c.itemID
+                  WHERE i.type = 'CD' AND i.available = 1
+                  AND """),
+               '5': ("Record", ("Title", "Author", "Publisher"),
+                     """
+                  SELECT i.itemID, i.title, r.author, r.publisher, r.time
+                  FROM Item i JOIN Record r ON i.itemID = r.itemID
+                  WHERE i.type = 'Record' AND i.available = 1
+                  AND """)}
+
+    type = input("What type of item are you donating: ")
+    title = input("What is the title of the item you are donating: ")
+    date = datetime.today()
+    fine = 20
+
+    query = """
+        SELECT MAX(itemID) FROM Item;
+    """
+    cur.execute(query)
+    maxID = cur.fetchone()
+    itemID = int(maxID) + 1
+
+    return
+
+
 """
 :TODO
-
-def donateItem():
-
-
 def findEvent():
     # search by:
     # name
