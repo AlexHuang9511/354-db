@@ -185,11 +185,25 @@ def volunteer():
     # position = volunteer
     # insert into personnel
 
+"""
+
 
 def findLibrarian():
     # all info (except PID, position)
     # WHERE position = 'Librarian'
-"""
+
+    query = """
+        SELECT name, email
+        FROM Personnel
+        WHERE position = 'Librarian'
+    """
+    cur.execute(query)
+    rows = cur.fetchall()
+
+    for row in rows:
+        print(row)
+
+    return
 
 
 def library():
