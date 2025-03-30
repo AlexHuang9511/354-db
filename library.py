@@ -154,6 +154,7 @@ def findEvent():
 
     # returns:
     # *
+"""
 
 
 def registerEvent():
@@ -161,7 +162,20 @@ def registerEvent():
     # attendeeID
     # insert into attends
 
+    eventID = int(input("Enter eventID: "))
+    attendeeID = int(input("Enter your attendeeID: "))
 
+    query = """
+        INSERT INTO Attends VALUES
+        (?, ?)
+    """
+    cur.execute(query, (attendeeID, eventID))
+    conn.commit()
+
+    return
+
+
+"""
 def volunteer():
     # needs:
     # PID - same as donate
