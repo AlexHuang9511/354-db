@@ -280,10 +280,8 @@ def findLibrarian():
 
 
 def library():
-
-    shouldExit = False
-
-    while not shouldExit:
+    choice = '-1'
+    while not choice == '0':
         print("What would you like to do?")
         print("1 - Search for an item")
         print("2 - Borrow an item")
@@ -295,12 +293,9 @@ def library():
         print("8 - Contact a librarian")
         print("0 - Exit")
 
-        choice = input("Enter the number corresponding you your request: ")
+        choice = input("Enter the number corresponding to your request: ")
 
-        if choice == '0':
-            shouldExit = True
-            conn.close()
-        elif choice == '1':
+        if choice == '1':
             findItem()
         elif choice == '2':
             borrowItem()
@@ -320,8 +315,8 @@ def library():
             continue
 
         print(choice)
+    conn.close()
     return 0
-
 
 if __name__ == "__main__":
     library()
