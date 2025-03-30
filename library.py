@@ -148,15 +148,33 @@ def donateItem():
 
 
 def findEvent():
+    # search by:
+    # name
+    # date
+
+    # returns:
+    # *
 
 
 def registerEvent():
+    # eventID
+    # attendeeID
+    # insert into attends
 
 
 def volunteer():
+    # needs:
+    # PID - same as donate
+    # name
+    # email
+    # phone
+    # position = volunteer
+    # insert into personnel
 
 
 def findLibrarian():
+    # all info (except PID, position)
+    # WHERE position = 'Librarian'
 """
 
 
