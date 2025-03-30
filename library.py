@@ -141,12 +141,66 @@ def returnItem():
     return
 
 
+def donateItem():
+    # itemID - get largest, existing itemID and add 1
+    # type - input
+    # title - input
+    # avail = 1
+    # arrivalDate = today
+    # default fine = 20
+    # item specific fields
+
+    # options:(type, attributes)
+    options = {'1': ("Book", ("author", "publisher", "release date (yyyy-mm-dd)", "pages", "ISBN")),
+               '2': ("Magazine", ("publisher", "release date (yyyy-mm-dd)", "pages", "ISSN")),
+               '3': ("Journal", ("author", "publisher", "release date (yyyy-mm-dd)", "pages", "DOI")),
+               '4': ("CD", ("author", "publisher", "release date (yyyy-mm-dd)", "time")),
+               '5': ("Record", ("author", "publisher", "release date (yyyy-mm-dd)", "time"))}
+
+    query = """
+        SELECT MAX(itemID) FROM Item;
+    """
+    cur.execute(query)
+    maxID = cur.fetchone()[0]
+    itemID = int(maxID) + 1
+
+    type = ''
+    while type not in options:
+        print("What type of item are you donating?")
+        for o in options:
+            print(o, "-", options[o][0])
+        print("0 - Go back")
+
+        type = input("Enter a number: ")
+
+        if type == '0':
+            return
+
+    title = input("Enter %s title: " %options[type][0])
+    date = datetime.today().strftime("%y-%m-%d")
+    fine = 20
+
+    query = "INSERT INTO Item VALUES (?, ?, ?, 1, ?, ?)"
+
+    cur.execute(query, (itemID, options[type][0], title, date, fine))
+
+    query = f"INSERT INTO {options[type][0]} VALUES ({itemID}"
+
+    for attr in options[type][1]:
+        query += ", " + "'" + input(f"Enter {options[type][0]} {attr}: ") + "'"
+
+    query += ");"
+
+    print(query)
+
+    cur.execute(query)
+
+    conn.commit()
+    return
+
+
 """
 :TODO
-
-def donateItem():
-
-
 def findEvent():
     # search by:
     # name
