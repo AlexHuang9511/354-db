@@ -118,6 +118,8 @@ def returnItem():
     itemID = input("Enter the itemID of the item you want to return: ")
 
     # make item available
+    # trigger in db checks if item is over due
+    #   sets returnDate to not NULL if item is overdue
     query = """
         UPDATE Item
         SET available = 1
@@ -135,6 +137,7 @@ def returnItem():
     """
 
     cur.execute(query, (itemID, borrowerID))
+    conn.commit()
     return
 
 
