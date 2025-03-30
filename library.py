@@ -1,397 +1,85 @@
 import sqlite3
 from datetime import datetime, timedelta
+
 conn = sqlite3.connect('library.db')
 conn.execute("PRAGMA foreign_keys = ON;")
 cur = conn.cursor()
 
 
-def findBook():
-    while True:
-        print("What would you like to search by?")
-        print("1 - Title")
-        print("2 - Author")
-        print("3 - Publisher")
-        print("4 - ISBN")
-        print("0 - Go Back")
-        search = (input("Enter a number: "))
-
-        if search == '0':
-            return
-
-        elif search == '1':
-            # title
-            title = str(input("Enter the title: "))
-
-            query = """
-                SELECT i.title, b.author, b.publisher, b.ISBN, b.pages
-                FROM Item i JOIN Book b ON i.itemID = b.itemID
-                WHERE i.type = 'Book' AND i.available = 1
-                AND i.title = ?;
-                """
-
-            cur.execute(query, (title,))
-            rows = cur.fetchall()
-
-            for row in rows:
-                print(row)
-
-        elif search == '2':
-            # author
-            author = str(input("Enter name of author: "))
-
-            query = """
-                SELECT i.title, b.author, b.publisher, b.ISBN, b.pages
-                FROM Item i JOIN Book b ON i.itemID = b.itemID
-                WHERE i.type = 'Book' AND i.available = 1
-                AND b.author = ?;
-                """
-
-            cur.execute(query, (author,))
-            rows = cur.fetchall()
-
-            for row in rows:
-                print(row)
-        elif search == '3':
-            # publisher
-            publisher = input("Enter name of publisher: ")
-
-            query = """
-                SELECT i.title, b.author, b.publisher, b.ISBN, b.pages
-                FROM Item i JOIN Book b ON i.itemID = b.itemID
-                WHERE i.type = 'Book' AND i.available = 1
-                AND b.publisher = ?;
-                """
-
-            cur.execute(query, (publisher,))
-            rows = cur.fetchall()
-
-            for row in rows:
-                print(row)
-        elif search == '4':
-            # ISBN
-            isbn = input("Enter name of ISBN: ")
-            query = """
-                SELECT i.title, b.author, b.publisher, b.ISBN, b.pages
-                FROM Item i JOIN Book b ON i.itemID = b.itemID
-                WHERE i.type = 'Book' AND i.available = 1
-                AND b.ISBN = ?;
-                """
-
-            cur.execute(query, (isbn,))
-            rows = cur.fetchall()
-
-            for row in rows:
-                print(row)
-        else:
-            continue
-
-
-def findMegazine():
-    while True:
-        print("What would you like to search by?")
-        print("1 - Title")
-        print("2 - Publisher")
-        print("3 - ISSN")
-        print("0 - Go Back")
-        search = (input("Enter a number: "))
-
-        if search == '0':
-            return
-
-        elif search == '1':
-            # title
-            title = str(input("Enter the title: "))
-
-            query = """
-                SELECT i.title, m.publisher, m.ISSN, m.pages
-                FROM Item i JOIN Magazine m ON i.itemID = m.itemID
-                WHERE i.type = 'Magazine' AND i.available = 1
-                AND i.title = ?;
-                """
-
-            cur.execute(query, (title,))
-            rows = cur.fetchall()
-
-            for row in rows:
-                print(row)
-
-        elif search == '2':
-            # publisher
-            publisher = input("Enter name of publisher: ")
-
-            query = """
-                SELECT i.title, m.publisher, m.ISSN, m.pages
-                FROM Item i JOIN Magazine m ON i.itemID = m.itemID
-                WHERE i.type = 'Magazine' AND i.available = 1
-                AND m.publisher = ?;
-                """
-
-            cur.execute(query, (publisher,))
-            rows = cur.fetchall()
-
-            for row in rows:
-                print(row)
-
-        elif search == '3':
-            # ISSN
-            issn = input("Enter name of ISSN: ")
-
-            query = """
-                SELECT i.title, m.publisher, m.ISSN, m.pages
-                FROM Item i JOIN Magazine m ON i.itemID = m.itemID
-                WHERE i.type = 'Magazine' AND i.available = 1
-                AND m.ISSN = ?;
-                """
-
-            cur.execute(query, (issn,))
-            rows = cur.fetchall()
-
-            for row in rows:
-                print(row)
-        else:
-            continue
-
-
-def findJournal():
-    while True:
-        print("What would you like to search by?")
-        print("1 - Title")
-        print("2 - Author")
-        print("3 - Publisher")
-        print("4 - DOI")
-        print("0 - Go Back")
-        search = (input("Enter a number: "))
-
-        if search == '0':
-            return
-
-        elif search == '1':
-            # title
-            title = str(input("Enter the title: "))
-
-            query = """
-                SELECT i.title, j.author, j.publisher, j.doi, j.pages
-                FROM Item i JOIN Journal j ON i.itemID = j.itemID
-                WHERE i.type = 'Journal' AND i.available = 1
-                AND i.title = ?;
-                """
-
-            cur.execute(query, (title,))
-            rows = cur.fetchall()
-
-            for row in rows:
-                print(row)
-
-        elif search == '2':
-            # author
-            author = str(input("Enter name of author: "))
-
-            query = """
-                SELECT i.title, j.author, j.publisher, j.doi, j.pages
-                FROM Item i JOIN Journal j ON i.itemID = j.itemID
-                WHERE i.type = 'Book' AND i.available = 1
-                AND j.author = ?;
-                """
-
-            cur.execute(query, (author,))
-            rows = cur.fetchall()
-
-            for row in rows:
-                print(row)
-        elif search == '3':
-            # publisher
-            publisher = input("Enter name of publisher: ")
-
-            query = """
-                SELECT i.title, j.author, j.publisher, j.doi, j.pages
-                FROM Item i JOIN Journal j ON i.itemID = j.itemID
-                WHERE i.type = 'Journal' AND i.available = 1
-                AND j.publisher = ?;
-                """
-
-            cur.execute(query, (publisher,))
-            rows = cur.fetchall()
-
-            for row in rows:
-                print(row)
-        elif search == '4':
-            # DOI
-            isbn = input("Enter name of DOI: ")
-            query = """
-                SELECT i.title, j.author, j.publisher, j.doi, j.pages
-                FROM Item i JOIN Journal j ON i.itemID = j.itemID
-                WHERE i.type = 'Journal' AND i.available = 1
-                AND j.doi = ?;
-                """
-
-            cur.execute(query, (isbn,))
-            rows = cur.fetchall()
-
-            for row in rows:
-                print(row)
-        else:
-            continue
-
-
-def findCD():
-    while True:
-        print("What would you like to search by?")
-        print("1 - Title")
-        print("2 - Author")
-        print("3 - Publisher")
-        print("0 - Go Back")
-        search = (input("Enter a number: "))
-
-        if search == '0':
-            return
-
-        elif search == '1':
-            # title
-            title = str(input("Enter the title: "))
-
-            query = """
-                SELECT i.title, c.author, c.publisher, c.time
-                FROM Item i JOIN CD c ON i.itemID = c.itemID
-                WHERE i.type = 'CD' AND i.available = 1
-                AND i.title = ?;
-                """
-
-            cur.execute(query, (title,))
-            rows = cur.fetchall()
-
-            for row in rows:
-                print(row)
-
-        elif search == '2':
-            # Author
-            author = input("Enter name of author: ")
-
-            query = """
-                SELECT i.title, c.author, c.publisher, c.time
-                FROM Item i JOIN CD c ON i.itemID = c.itemID
-                WHERE i.type = 'CD' AND i.available = 1
-                AND c.author = ?;
-                """
-
-            cur.execute(query, (author,))
-            rows = cur.fetchall()
-
-            for row in rows:
-                print(row)
-
-        elif search == '3':
-            # publisher
-            publisher = input("Enter name of publisher: ")
-
-            query = """
-                SELECT i.title, c.author, c.publisher, c.time
-                FROM Item i JOIN CD c ON i.itemID = c.itemID
-                WHERE i.type = 'CD' AND i.available = 1
-                AND c.publisher = ?;
-                """
-
-            cur.execute(query, (publisher,))
-            rows = cur.fetchall()
-
-            for row in rows:
-                print(row)
-        else:
-            continue
-
-
-def findRecord():
-    while True:
-        print("What would you like to search by?")
-        print("1 - Title")
-        print("2 - Author")
-        print("3 - Publisher")
-        print("0 - Go Back")
-        search = (input("Enter a number: "))
-
-        if search == '0':
-            return
-
-        elif search == '1':
-            # title
-            title = str(input("Enter the title: "))
-
-            query = """
-                SELECT i.title, r.author, r.publisher, r.time
-                FROM Item i JOIN Record r ON i.itemID = r.itemID
-                WHERE i.type = 'Record' AND i.available = 1
-                AND i.title = ?;
-                """
-
-            cur.execute(query, (title,))
-            rows = cur.fetchall()
-
-            for row in rows:
-                print(row)
-
-        elif search == '2':
-            # Author
-            author = input("Enter name of author: ")
-
-            query = """
-                SELECT i.title, r.author, r.publisher, r.time
-                FROM Item i JOIN Record r ON i.itemID = r.itemID
-                WHERE i.type = 'Record' AND i.available = 1
-                AND r.author = ?;
-                """
-
-            cur.execute(query, (author,))
-            rows = cur.fetchall()
-
-            for row in rows:
-                print(row)
-
-        elif search == '3':
-            # publisher
-            publisher = input("Enter name of publisher: ")
-
-            query = """
-                SELECT i.title, r.author, r.publisher, r.time
-                FROM Item i JOIN Record r ON i.itemID = r.itemID
-                WHERE i.type = 'Record' AND i.available = 1
-                AND r.publisher = ?;
-                """
-
-            cur.execute(query, (publisher,))
-            rows = cur.fetchall()
-
-            for row in rows:
-                print(row)
-        else:
-            continue
-
-
 def findItem():
+    # option:(type, search attribute, search query)
+    options = {'1': ("Book", ("Title", "Author", "Publisher", "ISBN"),
+                     """
+                  SELECT i.title, b.author, b.publisher, b.ISBN, b.pages
+                  FROM Item i JOIN Book b ON i.itemID = b.itemID
+                  WHERE i.type = 'Book' AND i.available = 1
+                  AND """),
+               '2': ("Magazine", ("Title", "Publisher", "ISSN"),
+                     """
+                  SELECT i.title, m.publisher, m.ISSN, m.pages
+                  FROM Item i JOIN Magazine m ON i.itemID = m.itemID
+                  WHERE i.type = 'Magazine' AND i.available = 1
+                  AND """),
+               '3': ("Journal", ("Title", "Author", "Publisher", "DOI"),
+                     """
+                  SELECT i.title, j.author, j.publisher, j.doi, j.pages
+                  FROM Item i JOIN Journal j ON i.itemID = j.itemID
+                  WHERE i.type = 'Journal' AND i.available = 1
+                  AND """),
+               '4': ("CD", ("Title", "Author", "Publisher"),
+                     """
+                  SELECT i.title, c.author, c.publisher, c.time
+                  FROM Item i JOIN CD c ON i.itemID = c.itemID
+                  WHERE i.type = 'CD' AND i.available = 1
+                  AND """),
+               '5': ("Record", ("Title", "Author", "Publisher"),
+                     """
+                  SELECT i.title, r.author, r.publisher, r.time
+                  FROM Item i JOIN Record r ON i.itemID = r.itemID
+                  WHERE i.type = 'Record' AND i.available = 1
+                  AND """)}
 
     while True:
         print("What type of item would you like to search for?")
-        print("1 - Book")
-        print("2 - Magazine")
-        print("3 - Journal")
-        print("4 - CD")
-        print("5 - Record")
-        print("0 - Go Back")
+        for o in options:
+            print(o, "-", options[o][0])
+        print("0 - Go back")
+
         type = input("Enter a number: ")
 
         if type == '0':
             return
 
-        if type == '1':
-            findBook()
-        elif type == '2':
-            findMegazine()
-        elif type == '3':
-            findJournal()
-        elif type == '4':
-            findCD()
-        elif type == '5':
-            findRecord()
-        else:
-            continue
+        if type in options:
+            search = None
+            while search != 0:
+                print("What would you like to search by?")
+                for i in range(1, len(options[type][1]) + 1):
+                    print(i, "-", options[type][1][i-1])
+                print("0 - Go back")
+
+                try:
+                    search = int(input("Enter a number: "))
+                except:
+                    continue
+
+                if 1 <= search <= len(options[type][1]):
+                    # Construct query
+                    query = options[type][2]
+                    if search == 1:  # Title
+                        query += "i."  # Search in Item
+                    else:  # Not title, search in subtype
+                        query += options[type][0][0] + "."
+                    query += options[type][1][search-1] + " = ?;"
+
+                    param = str(
+                        input("Enter " + options[type][1][search-1] + ": "))
+
+                    cur.execute(query, (param,))
+                    rows = cur.fetchall()
+
+                    for row in rows:
+                        print(row)
 
 
 def borrowItem():
