@@ -199,16 +199,31 @@ def donateItem():
     return
 
 
-"""
-:TODO
 def findEvent():
-    # search by:
-    # name
-    # date
+    # search by name, date, or audience
+    options = {'1':'Name',
+               '2':'Date',
+               '3':'Audience'}
 
-    # returns:
-    # *
-"""
+    search = ''
+    while search != '0':
+        print("What would you like to search by?")
+        for o in options:
+            print(o, '-', options[o])
+        print("0 - Go back")
+
+        search = str(input("Enter a number: "))
+        if search in options:
+            query = "SELECT * FROM Event WHERE " + options[search] + " LIKE "
+            query += "'%" + str(input(f"Enter {options[search]}: ")) + "%'"
+
+            cur.execute(query)
+            rows = cur.fetchall()
+
+            for row in rows:
+                print(row)
+
+    return
 
 
 def registerEvent():
