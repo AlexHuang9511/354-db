@@ -70,12 +70,12 @@ def findItem():
                         query += "i."  # Search in Item
                     else:  # Not title, search in subtype
                         query += options[type][0][0] + "."
-                    query += options[type][1][search-1] + " = ?;"
 
                     param = str(
                         input("Enter " + options[type][1][search-1] + ": "))
+                    query += options[type][1][search-1] + f" LIKE '%{param}%';"
 
-                    cur.execute(query, (param,))
+                    cur.execute(query)
                     rows = cur.fetchall()
 
                     for row in rows:
@@ -118,8 +118,33 @@ def returnItem():
     itemID = input("Enter the itemID of the item you want to return: ")
 
     # make item available
-    # trigger in db checks if item is over due
-    #   sets returnDate to not NULL if item is overdue
+    # make sure item is valid
+    # check if item is overdue
+    # sets returnDate to not NULL if item is overdue
+
+    query = """SELECT borrowerID, itemID, dueDate FROM Borrows
+    WHERE borrowerID = ? AND itemID = ? and returnDate IS NULL"""
+    cur.execute(query, (borrowerID, itemID))
+    vals = cur.fetchone()
+    if not vals or not (vals[0] == borrowerID and vals[1] == itemID):
+        print("Invalid request!")
+        return
+
+    date = datetime.today().strftime("%y-%m-%d")
+
+    query = "SELECT fine FROM Item WHERE itemID = ?"
+    cur.execute(query, itemID)
+    fine = cur.fetchone()[0]
+
+    if date > vals[2]:
+        query = """
+            UPDATE Borrows
+            SET fine = ?, returnDate = ?
+            WHERE itemID = ? AND borrowerID = ?
+            """
+
+        cur.execute(query, (fine, date, itemID, borrowerID))
+
     query = """
         UPDATE Item
         SET available = 1
